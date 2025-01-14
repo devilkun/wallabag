@@ -2,16 +2,16 @@ const path = require('path');
 const webpack = require('webpack');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
-const rootDir = path.resolve(__dirname, '../../../');
+const projectDir = path.resolve(__dirname, '../../../');
 
 module.exports = {
   entry: {
-    material: path.join(rootDir, './app/Resources/static/themes/material/index.js'),
-    public: path.join(rootDir, './app/Resources/static/themes/_global/share.js'),
+    material: path.join(projectDir, './assets/material/index.js'),
+    public: path.join(projectDir, './assets/_global/share.js'),
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(rootDir, 'web/wallassets'),
+    path: path.resolve(projectDir, 'web/wallassets'),
     publicPath: '',
   },
   plugins: [
@@ -25,13 +25,13 @@ module.exports = {
       configFile: 'stylelint.config.js',
       failOnError: false,
       quiet: false,
-      context: 'app/Resources/static/themes',
+      context: 'assets',
       files: '**/*.scss',
     }),
   ],
   resolve: {
     alias: {
-      jquery: path.join(rootDir, 'node_modules/jquery/dist/jquery.js'),
+      jquery: path.join(projectDir, 'node_modules/jquery/dist/jquery.js'),
     },
   },
 };

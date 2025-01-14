@@ -189,7 +189,7 @@ menu:
         random_entry: Spring naar een willekeurig item van de lijst
     left:
         site_credentials: Site inloggegevens
-        users_management: Gebruikeresbeheer
+        users_management: Gebruikersbeheer
         back_to_unread: Terug naar ongelezen artikelen
         save_link: Bewaar een link
         search: Zoeken
@@ -270,7 +270,6 @@ flashes:
             tagging_rules_deleted: Labeling regel verwijderd
             tagging_rules_updated: Labeling regels geüpdatet
             rss_updated: RSS informatie geüpdatet
-            password_not_updated_demo: In demonstratiemodus kan u geen wachtwoord wijzigen voor deze gebruiker.
             entries_reset: Items gereset
             tags_reset: Labels gereset
             annotations_reset: Annotaties gereset
@@ -464,7 +463,7 @@ quickstart:
     support:
         description: Wij zijn er voor u als u hulp nodig heeft.
         title: Ondersteuning
-        gitter: Op Gitter
+        matrix: Op Matrix
         email: Per e-mail
         github: Op GitHub
     docs:
@@ -550,7 +549,7 @@ howto:
     bookmarklet:
         description: 'Sleep deze link naar uw bladwijzerbalk:'
     mobile_apps:
-        ios: met de iTunes Store
+        ios: met de App Store
         windows: met de Microsoft Store
         android:
             via_google_play: met Google Play
@@ -566,9 +565,7 @@ howto:
     page_title: Handleiding
 about:
     helping:
-        by_contributing_2: een lijst met alles wat we nodig hebben
-        by_paypal: met Paypal
-        by_contributing: 'door bij te dragen aan het project:'
+        by_paypal: met Liberapay
         description: 'wallabag is gratis en open source. U kan ons helpen:'
     third_party:
         license: Licentie

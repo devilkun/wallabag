@@ -139,9 +139,7 @@ about:
         support: '<a href="https://github.com/wallabag/wallabag/issues">pe GitHub</a>'
     helping:
         description: 'wallabag este gratis și Open-Source. Cum ne poți ajuta:'
-        by_contributing: 'contribuind la proiect:'
-        by_contributing_2: 'o problemă ne listează toate nevoile'
-        by_paypal: 'prin Paypal'
+        by_paypal: 'prin Liberapay'
     third_party:
         license: 'Licență'
 
@@ -161,7 +159,7 @@ howto:
         android:
             via_f_droid: 'prin F-Droid'
             via_google_play: 'prin Google Play'
-        ios: 'prin iTunes Store'
+        ios: 'prin App Store'
         windows: 'prin Microsoft Store'
     bookmarklet:
         description: 'Drag &amp; drop acest link în bara de bookmark-uri:'
@@ -179,7 +177,6 @@ flashes:
         notice:
             config_saved: 'Configurație salvată.'
             password_updated: 'Parolă actualizată'
-            password_not_updated_demo: ""
             user_updated: 'Informație actualizată'
             feed_updated: 'Informație RSS actualizată'
     entry:

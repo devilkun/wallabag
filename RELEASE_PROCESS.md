@@ -9,7 +9,7 @@ During this documentation, we assume the release is `$LAST_WALLABAG_RELEASE` (li
 #### Prepare the release
 
 - Update these files with new information
-    - `app/config/wallabag.yml` (`wallabag_core.version`)
+    - `app/config/wallabag.yml` (`wallabag.version`)
     - `CHANGELOG.md`
 - Create a PR named "Prepare $LAST_WALLABAG_RELEASE release".
 - Wait for test to be ok, merge it.
@@ -17,10 +17,9 @@ During this documentation, we assume the release is `$LAST_WALLABAG_RELEASE` (li
 #### Create a new release on GitHub
 
 - [Create the new release on GitHub](https://github.com/wallabag/wallabag/releases/new) by targetting the `master` branch or any appropriate branch (for instance backports).
-- Update nginx config to change the redirect rule for `https://wllbg.org/latest-v2-package` & `http://wllbg.org/latest-v2` (they both redirect to the asset of the GitHub release)
+- Update [website](https://github.com/wallabag/website) to change MD5 sum and create the release blog post (based on the changelog).
 - Update Dockerfile https://github.com/wallabag/docker (and create a new tag)
-- Update wallabag.org website (downloads, MD5 sum, releases and new blog post)
-- Put the next patch version suffixed with `-dev` in `app/config/wallabag.yml` (`wallabag_core.version`)
+- Put the next patch version suffixed with `-dev` in `app/config/wallabag.yml` (`wallabag.version`)
 - Drink a :beer:!
 
 ### Target PHP version
