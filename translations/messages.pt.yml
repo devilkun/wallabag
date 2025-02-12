@@ -242,8 +242,6 @@ about:
         support: '<a href="https://github.com/wallabag/wallabag/issues">no GitHub</a>'
     helping:
         description: 'wallabag é livre e software livre. Você pode nos ajudar:'
-        by_contributing: 'contribuindo com o projeto:'
-        by_contributing_2: 'uma lista de todas as nossas necessidades'
         by_paypal: ''
     contributors:
         description: 'Obrigado por contribuir com a aplicação web wallabag'
@@ -268,7 +266,7 @@ howto:
         android:
             via_f_droid: ''
             via_google_play: ''
-        ios: 'na iTunes Store'
+        ios: 'na App Store'
         windows: 'na Microsoft Store'
     bookmarklet:
         description: 'Arraste e solve este link na sua barra de favoritos:'
@@ -324,7 +322,7 @@ quickstart:
         description: 'Se você precisa de ajuda, nós estamos aqui.'
         github: 'No GitHub'
         email: 'Por e-mail'
-        gitter: 'No Gitter'
+        matrix: 'No Matrix'
 tag:
     page_title: 'Tags'
     list:
@@ -461,7 +459,6 @@ flashes:
         notice:
             config_saved: 'Configiração salva.'
             password_updated: 'Palavra-passe atualizada'
-            password_not_updated_demo: 'Em modo de demonstração, não pode alterar a palavra-passe deste utilizador.'
             rss_updated: 'Informação de RSS atualizada'
             tagging_rules_updated: 'Regras de tags atualizadas'
             tagging_rules_deleted: 'Regra de tag apagada'

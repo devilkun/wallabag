@@ -66,6 +66,7 @@ config:
         reset: Zresetuj obszar
         ignore_origin: Zasady ignorowania pochodzenia
         feed: Źródła
+        article_display: Wyświetlanie artykułów
     form:
         save: Zapisz
     form_settings:
@@ -89,6 +90,16 @@ config:
         help_reading_speed: wallabag oblicza czas czytania każdego artykułu. Możesz tutaj określić, dzięki tej liście, czy jesteś szybkim czy powolnym czytelnikiem. wallabag przeliczy czas czytania każdego artykułu.
         help_language: Możesz zmienić język interfejsu wallabag.
         help_pocket_consumer_key: Wymagane dla importu z Pocket. Możesz go stworzyć na swoim koncie Pocket.
+        display_thumbnails_label: Wyświetlaj miniaturki artykułów (przydatne w przypadku powolnych połączeń).
+        help_display_thumbnails: Możesz zdecydować, czy chcesz wyświetlać miniaturki artykułów, czy nie. Przydatne w przypadku powolnych połączeń.
+        help_font: Możesz wybrać rodzinę czcionek do użycia.
+        help_lineheight: Możesz wybrać wysokość linii do użycia.
+        help_maxwidth: Możesz wybrać maksymalną szerokość do użycia.
+        font_label: Rodzina czcionek
+        fontsize_label: Rozmiar czcionek
+        lineheight_label: Wysokość linii
+        maxwidth_label: Maksymalna szerokość
+        help_fontsize: Możesz wybrać rozmiar czcionek do użycia.
     form_rss:
         description: Kanały RSS prowadzone przez wallabag pozwalają Ci na czytanie twoich zapisanych artykułów w twoim ulubionym czytniku RSS. Musisz najpierw wygenerować tokena.‌
         token_label: Token RSS
@@ -132,6 +143,7 @@ config:
         entries: Usuń WSZYTSTKIE wpisy
         archived: Usuń WSZYSTKIE zarchiwizowane wpisy
         confirm: Jesteś pewien? (tej operacji NIE MOŻNA cofnąć)
+        tagging_rules: Usuń WSZYSTKIE reguły tagowania
     form_password:
         description: Tutaj możesz zmienić swoje hasło. Twoje nowe hasło powinno mieć conajmniej 8 znaków.
         old_password_label: Stare hasło
@@ -256,6 +268,9 @@ entry:
         export_title: Eksportuj
         show_same_domain: Pokaż artykuły z tej samej domeny
         assign_search_tag: Przypisz to wyszukiwanie jako tag do każdego wyniku
+        toggle_mass_action: Przełącz akcję masową
+        mass_action_tags_input_placeholder: tag1, tag2, tag3
+        add_tags: Dodaj tagi
     filters:
         title: Filtry
         status_label: Status
@@ -281,6 +296,7 @@ entry:
             clear: Wyczyść
             filter: Filtruj
         annotated_label: Z adnotacjami
+        parsed_label: Pobrano nieprawidłowo
     view:
         left_menu:
             back_to_top: Wróć na górę
@@ -331,6 +347,7 @@ entry:
         delete: Czy jesteś pewien, że chcesz usunąć ten artykuł?
         delete_tag: Czy jesteś pewien, że chcesz usunąć ten tag z tego artykułu?
         delete_entries: Czy na pewno chcesz usunąć te artykuły?
+        reload: Czy na pewno chcesz ponownie załadować ten artykuł?
     metadata:
         reading_time: Szacowany czas czytania
         reading_time_minutes_short: '%readingTime% min'
@@ -358,9 +375,7 @@ about:
         support: <a href="https://github.com/wallabag/wallabag/issues">na GitHubie</a>
     helping:
         description: 'wallabag jest darmowy i otwartoźródłowy. Możesz nam pomóc:'
-        by_contributing: 'przez przyłączenie się do projektu:'
-        by_contributing_2: lista wszystkich naszych potrzeb
-        by_paypal: przez Paypal
+        by_paypal: przez Liberapay
     contributors:
         description: Podziękuj osobą, które przyczyniły się do projektu przez aplikację webową
     third_party:
@@ -387,7 +402,7 @@ howto:
         android:
             via_f_droid: w F-Droid
             via_google_play: w Google Play
-        ios: w iTunes Store
+        ios: w App Store
         windows: w Microsoft Store
     bookmarklet:
         description: 'Przeciągnij i upuść ten link na swój pasek zakładek:'
@@ -427,7 +442,7 @@ quickstart:
     configure:
         title: Konfiguruj aplikację
         description: W celu dopasowania aplikacji do swoich upodobań zobacz konfigurację aplikacji.
-        language: Zmień język i wygląd
+        language: Zmień język i interfejs
         rss: Włącz kanały RSS
         tagging_rules: Napisz reguły pozwalające na automatyczne otagowanie twoich artykułów
         feed: Włącz kanały
@@ -470,7 +485,7 @@ quickstart:
         description: Jeżeli potrzebujesz pomocy, jesteśmy tutaj dla ciebie.
         github: na GitHubie
         email: przez e-mail
-        gitter: na Gitterze
+        matrix: Na Matriksie
 tag:
     page_title: Tagi
     list:
@@ -511,10 +526,10 @@ import:
         how_to: Wybierz swój plik eksportu z wallabag i kliknij przycisk poniżej, aby go przesłać i zaimportować.
     wallabag_v2:
         page_title: Importuj > Wallabag v2
-        description: Ten importer, zaimportuje wszystkie twoje artykułu z wallabag v2. Idź do wszystkich artykułów, a następnie na panelu exportu kliknij na "JSON". Otrzymasz plik "All articles.json".
+        description: Ten importer zaimportuje wszystkie Twoje artykuły z wallabag v2. Przejdź do Wszyskie, a następnie na pasku bocznym eksportu kliknij „JSON”. Otrzymasz plik „All articles.json”.
     readability:
         page_title: Importuj > Readability
-        description: Ten importer, zaimportuje wszystkie twoje artykuły z Readability. Na stronie narzędzi (https://www.readability.com/tools/), kliknij na "Export your data" w sekcji "Data Export". Otrzymach email z plikiem JSON (plik nie będzie zawierał rozszerzenia .json).
+        description: Ten importer zaimportuje wszystkie twoje artykuły z Readability.
         how_to: Wybierz swój plik eksportu z Readability i kliknij przycisk poniżej, aby go przesłać i zaimportować.
     worker:
         enabled: 'Import jest wykonywany asynchronicznie. Od momentu rozpoczęcia importu, zewnętrzna usługa może zajmować się na raz tylko jednym zadaniem. Bieżącą usługą jest:'
@@ -537,11 +552,24 @@ import:
         how_to: Wybierz swój plik eksportu z Pinboard i kliknij przycisk poniżej, aby go przesłać i zaimportować.
     elcurator:
         page_title: Importuj > elCurator
-        description: Ten importer zaimportuje wszystkie artykuły elCurator. Przejdź do swoich preferencji na koncie elCurator, a następnie wyeksportuj treści. Otrzymasz plik JSON.
+        description: Ten importer zaimportuje wszystkie twoje artykuły z elCurator.
+        how_to: Wybierz plik eksportowany przez elCurator i kliknij poniższy przycisk, aby go przesłać i zaimportować.
     delicious:
         page_title: Importuj > del.icio.us
         description: Ten importer zaimportuje wszystkie zakładki Delicious. Od 2021 r. możesz ponownie wyeksportować z niego swoje dane za pomocą strony eksportu (https://del.icio.us/export). Wybierz format "JSON" i pobierz go (np. "delicious_export.2021.02.06_21.10.json").
         how_to: Wybierz plik eksportu Delicious i kliknij przycisk poniżej, aby go przesłać i zaimportować.
+    shaarli:
+        page_title: Importuj > Shaarli
+        description: Ten importer zaimportuje wszystkie Twoje zakładki Shaarli. Po prostu przejdź do sekcji Narzędzia, a następnie do „Eksportuj bazę danych”, wybierz zakładki i wyeksportuj je. Otrzymasz plik HTML.
+        how_to: Wybierz swój plik z zakładkami i naciśnij poniższy przycisk, aby je zaimportować. Może to zająć dłuższą chwilę, zanim wszystkie artykuły zostaną przeniesione.
+    pocket_html:
+        page_title: Importuj > Pocket HTML
+        description: Ten importer zaimportuje wszystkie zakładki Pocket (za pośrednictwem eksportu HTML). Po prostu przejdź do https://getpocket.com/export, a następnie wyeksportuj plik HTML. Plik HTML zostanie pobrany (np. „ril_export.html”).
+        how_to: Wybierz swój plik z zakładkami i naciśnij poniższy przycisk, aby je zaimportować. Może to zająć dłuższą chwilę, zanim wszystkie artykuły zostaną przeniesione.
+    omnivore:
+        description: Ten importer zaimportuje wszystkie Twoje artykuły z Omnivore.
+        page_title: Importuj > Omnivore
+        how_to: Rozpakuj eksport z Omnivore, a następnie prześlij po kolei wszystkie pliki JSON o nazwie „metadata_x_to_y.json”.
 developer:
     page_title: Zarządzanie klientami API
     welcome_message: Witaj w API wallabag
@@ -647,7 +675,6 @@ flashes:
         notice:
             config_saved: Konfiguracja zapisana.
             password_updated: Hasło zaktualizowane
-            password_not_updated_demo: W trybie demonstracyjnym nie możesz zmienić hasła dla tego użytkownika.
             user_updated: Informacje zaktualizowane
             rss_updated: Informacje RSS zaktualizowane
             tagging_rules_updated: Reguły tagowania zaktualizowane
@@ -666,6 +693,7 @@ flashes:
             otp_disabled: Wyłączono uwierzytelnianie dwuskładnikowe
             tagging_rules_not_imported: Błąd podczas importowania zasad tagowania
             ignore_origin_rules_deleted: Usunięto zasadę ignorowania pochodzenia
+            tagging_rules_reset: Reguły tagowania zostały zresetowane
     entry:
         notice:
             entry_already_saved: Wpis już został dodany %date%
@@ -684,6 +712,7 @@ flashes:
         notice:
             tag_added: Tag dodany
             tag_renamed: Zmieniono nazwę tagu
+            too_much_tags: Aby uniknąć problemów z wydajnością, nie możesz dodać jednocześnie więcej tagów niż %tags% ani tagów zawierających więcej niż %characters% znaki(-ów).
     import:
         notice:
             failed: Nieudany import, prosimy spróbować ponownie.

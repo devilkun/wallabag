@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - master
-      - 2.*
+      - "2.**"
 
 permissions:
   contents: read
@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: "Checkout"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Install PHP"
         uses: "shivammathur/setup-php@v2"
@@ -30,10 +30,22 @@ jobs:
         env:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: "Setup MySQL"
+        run: |
+          sudo systemctl start mysql.service
+          sudo mysql -u root -proot -h 127.0.0.1 -e "CREATE DATABASE wallabag_test"
+          cp app/config/tests/parameters_test.mysql.yml app/config/parameters_test.yml
+
       - name: "Install dependencies with Composer"
-        uses: "ramsey/composer-install@v2"
+        uses: "ramsey/composer-install@v3"
         with:
           composer-options: "--optimize-autoloader --prefer-dist"
+
+      - name: "Run Composer validate"
+        run: "composer validate"
+
+      - name: "Run Composer dependency analyser"
+        run: "bin/composer-dependency-analyser"
 
       - name: "Run PHP CS Fixer"
         run: "bin/php-cs-fixer fix --verbose --dry-run --format=checkstyle | cs2pr"
@@ -41,11 +53,11 @@ jobs:
       - name: "Generate test cache for PHPStan"
         run: "php bin/console cache:clear --env=test"
 
-      - name: "Install PHPUnit for PHPStan"
-        run: "php bin/simple-phpunit install"
-
       - name: "Run PHPStan"
         run: "php bin/phpstan analyse --no-progress --error-format=checkstyle | cs2pr"
 
       - name: "Run TwigCS"
         run: "php bin/twigcs --severity=error --display=blocking --reporter checkstyle app/ src/ | cs2pr"
+
+      - name: "Run ergebnis/composer-normalize"
+        run: "composer normalize --dry-run --no-check-lock"

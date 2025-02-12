@@ -64,7 +64,7 @@ import:
     readability:
         how_to: Odaberi Readability izvoz i pritisni donji gumb za slanje i uvoz datoteke.
         page_title: Uvoz > Readability
-        description: Ovaj uvoznik uvozi sve tvoje Readability članke. Na stranici alata (https://www.readability.com/tools/), pritisni „Izvezi svoje podatke” u odjeljku „Izvoz podataka”. Primit ćeš e-mail za preuzimanje json-a (što zapravo ne završava s .json).
+        description: Ovaj uvoznik uvozi sve tvoje Readability članke.
     worker:
         enabled: 'Uvoz se vrši asinkrono. Nakon što se uvoz zadatak pokrene, jedna vanjska usluga obradit će poslove jedan po jedan. Trenutačna usluga je:'
         download_images_warning: Aktivirao(la) si preuzimanje slika za članke. U kombinaciji s klasičnim uvozom, postupak može potrajati godinama (ili možda ne uspije). <strong>Preporučujemo</strong> aktivirati asinkroniziran uvoz za izbjegavanje grešaka.
@@ -94,22 +94,33 @@ import:
         page_title: Uvoz > Wallabag v1
         how_to: Odaberi wallabag izvoz i pritisni donji gumb za slanje i uvoz datoteke.
         description: Ovaj uvoznik uvozi sve tvoje članke wallabaga verzije 1. Na tvojoj stranici konfiguracije, pritisni „JSON izvoz” u odjeljku „Izvezi svoje wallabag podatke”. Dobit ćeš datoteku „wallabag-export-1-xxxx-xx-xx.json”.
-    page_description: Dobro došao/dobro došla u uvoznik wallabaga. Odaberi prethodnu uslugu s koje želiš premjestiti podatke.
+    page_description: Dobro došao/dobro došla u wallabag uvoznik. Odaberi prethodnu uslugu s koje želiš premjestiti podatke.
     action:
-        import_contents: Sadržaj uvoza
+        import_contents: Uvezi sadržaj
     elcurator:
-        description: Ovaj će uvoznik uvesti sve tvoje elCurator članke. Prijeđi na postavke na tvom elCurator računu, a zatim izvezi sadržaj. Dobit ćete JSON datoteku.
-        page_title: Uvezi > elCurator
+        description: Ovaj uvoznik uvozi sve tvoje elCurator članke.
+        page_title: Uvoz > elCurator
+        how_to: Odaberi elCurator izvoz i pritisni donji gumb za slanje i uvoz datoteke.
     delicious:
         page_title: Uvoz > del.icio.us
-        description: Ovaj će uvoznik uvesti sve tvoje „Delicious” zabilješke. Od 2021. godine nadalje, iz njega možeš ponovo izvesti podatke pomoću stranice za izvoz (https://del.icio.us/export). Odaberi format „JSON” i preuzmi ga (npr. „delicious_export.2021.02.06_21.10.json”).
+        description: Ovaj uvoznik uvozi sve tvoje Delicious zabilješke. Od 2021. godine nadalje, iz njega možeš ponovo izvesti podatke pomoću stranice za izvoz (https://del.icio.us/export). Odaberi format „JSON” i preuzmi ga (npr. „delicious_export.2021.02.06_21.10.json”).
         how_to: Odaberi Delicious izvoz i pritisni donji gumb za slanje i uvoz datoteke.
+    shaarli:
+        page_title: Uvoz > Shaarli
+        description: Ovaj uvoznik uvozi sve tvoje Shaarli zabilješke. Idi na odjeljak „Alati”, zatim u „Izvezi bazu podataka”, odaberi tvoje zabilješke i izvezi ih. Dobit ćeš HTML datoteku.
+        how_to: Odaberi datoteku sigurnosne kopije zabilježaka i pritisni donji gumb za uvoz datoteke. Postupak može trajati dugo jer se moraju dohvatiti svi članci.
+    pocket_html:
+        page_title: Uvoz > Pocket HTML
+        how_to: Odaberi datoteku sigurnosne kopije zabilježaka i pritisni donji gumb za uvoz. Postupak može trajati dugo jer se moraju dohvatiti svi članci.
+        description: Ovaj uvoznik uvozi sve tvoje Pocket zabilješke (putem HTML izvoza). Idi na https://getpocket.com/export, zatim izvezi HTML datoteku. Preuzet će se HTML datoteka (poput „ril_export.html”).
+    omnivore:
+        page_title: Uvoz > Omnivore
+        description: Ovaj uvoznik uvozi sve tvoje Omnivor članke.
+        how_to: Raspakiraj tvoj Omnivore izvoz, a zatim prenesi svaku JSON datoteku s imenom „metadata_x_to_y.json” pojedinačno.
 about:
     helping:
-        by_contributing: 'doprinošenjem projektu:'
         description: 'wallabag je slobodan softver otvorenog koda. Možeš nam pomoći:'
-        by_paypal: putem PayPal-a
-        by_contributing_2: problem nabraja sve naše potrebe
+        by_paypal: putem Liberapay
     who_behind_wallabag:
         license: Licenca
         website: web-stranica
@@ -217,6 +228,16 @@ config:
         items_per_page_label: Broj stavki po stranici
         help_reading_speed: wallabag izračunava vrijeme čitanja za svaki članak. Ovdje možeš definirati, zahvaljujući ovom popisu, jesi li brz ili spor čitač. wallabag će izračunati vrijeme čitanja za svaki članak.
         language_label: Jezik
+        help_display_thumbnails: Možeš odlučiti želiš li prikazivati minijature članaka. Korisno za spore veze.
+        display_thumbnails_label: Prikaži minijatue članaka (korisno za spore veze).
+        help_font: Možeš odabrati obitelj fontova koju želiš koristiti.
+        help_fontsize: Možeš odabrati veličinu fonta koju želiš koristiti.
+        help_lineheight: Možeš odabrati prored koji želiš koristiti.
+        help_maxwidth: Možeš odabrati maksimalnu širinu koju želiš koristiti.
+        font_label: Obitelj fontova
+        fontsize_label: Veličina fonta
+        lineheight_label: Prored
+        maxwidth_label: Maksimalna širina
     form_user:
         delete:
             confirm: Sigurno? (OVO JE NEPOVRATNA RADNJA)
@@ -248,6 +269,7 @@ config:
         confirm: Stvarno? (OVO JE NEPOVRATNA RADNJA)
         annotations: Ukloni SVE napomene
         tags: Ukloni SVE oznake
+        tagging_rules: Ukloni SVA pravila označavanja
     form_password:
         repeat_new_password_label: Ponovi novu lozinku
         old_password_label: Trenutačna lozinka
@@ -265,6 +287,7 @@ config:
         reset: Ponovo postavi područje
         ignore_origin: Pravila za zanemarivanje izvora
         feed: Feedovi
+        article_display: Prikaz članka
     otp:
         app:
             two_factor_code_description_3: 'Također, spremi ove sigurnosne kodove na sigurno mjesto. Možeš ih koristiti u slučaju da izgubiš pristup OTP programu:'
@@ -314,7 +337,7 @@ howto:
             via_f_droid: putem F-Droid
             via_google_play: putem Google Play
         windows: na Microsoft Store
-        ios: na iTunes Store
+        ios: na App Store
     tab_menu:
         add_link: Dodaj poveznicu
         shortcuts: Koristi prečace
@@ -400,7 +423,6 @@ flashes:
             summary_with_queue: 'Sažetak uvoza: %queued% u redu čekanja.'
     config:
         notice:
-            password_not_updated_demo: U demonstracijskom modusu ne možeš promijeniti lozinku za ovog korisnika.
             tags_reset: Oznake resetirane
             password_updated: Lozinka aktualizirana
             config_saved: Konfiguracija spremljena.
@@ -421,6 +443,7 @@ flashes:
             feed_token_revoked: Token feeda opozvan
             feed_token_updated: Token feeda aktualiziran
             feed_updated: Podaci feeda aktualizirani
+            tagging_rules_reset: Pravila označavanja resetirana
     site_credential:
         notice:
             deleted: Podaci za prijavu na stranicu „%host%” izbrisani
@@ -430,6 +453,7 @@ flashes:
         notice:
             tag_added: Oznaka dodana
             tag_renamed: Oznaka preimenovana
+            too_much_tags: Za izbjegavanje problem s performansama, ne možeš dodati više od %tags% oznaka odjednom ili oznake koje imaju više od %characters% znakova.
     ignore_origin_instance_rule:
         notice:
             deleted: Globalno pravilo za zanemarivanje izvora izbrisano
@@ -480,6 +504,7 @@ entry:
         title: Filtri
         unread_label: Nepročitani
         annotated_label: S napomenom
+        parsed_label: Nije ispravno dohvaćeno
     list:
         delete: Izbriši
         reading_time_less_one_minute: 'procijenjeno vrijeme čitanja: &lt; 1 min'
@@ -495,6 +520,9 @@ entry:
         reading_time_less_one_minute_short: '&lt; 1 min'
         show_same_domain: Prikaži članke s istom domenom
         assign_search_tag: Dodijeli ovo pretraživanje kao oznaku svakom rezultatu
+        mass_action_tags_input_placeholder: oznaka1, oznaka2, oznaka3
+        toggle_mass_action: Uklj./Isklj. grupne radnje
+        add_tags: Dodaj oznake
     view:
         left_menu:
             set_as_starred: Uklj/Isklj omiljene
@@ -547,6 +575,7 @@ entry:
         delete: Stvarno želiš ukloniti taj članak?
         delete_tag: Stvarno želiš ukloniti tu oznaku za taj članak?
         delete_entries: Stvarno želiš ukloniti ove članke?
+        reload: Stvarno želiš ponovo učitati taj članak?
     edit:
         title_label: Naslov
         url_label: Url
@@ -614,7 +643,7 @@ quickstart:
         description: Za dobivanje programa koji tebi najviše odgovara, pogledaj konfiguraciju wallabaga.
         tagging_rules: Odredi pravila za automatsko označivanje članaka
         title: Konfiguriraj program
-        language: Promijeni jezik i dizajn
+        language: Promijeni jezik i sučelje
         feed: Aktiviraj feedove
     developer:
         description: 'Mislili smo i na pregramere: Docker, sučelje (API), prijevodi itd.'
@@ -623,10 +652,10 @@ quickstart:
         use_docker: Koristi Docker za instliranje wallabaga
     support:
         github: Na GitHubu
-        gitter: Na Gitteru
         title: Podrška
         email: Putem e-maila
         description: Ako trebaš pomoć, spremni smo ti pomoći.
+        matrix: Na Matrixu
     more: Više …
     intro:
         paragraph_1: Pratit ćemo te pri tvom posjetu wallabagu i pokazat ćemo ti neke funkcije koje bi te mogle zanimati.

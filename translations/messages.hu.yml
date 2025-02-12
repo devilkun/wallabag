@@ -273,9 +273,7 @@ about:
         support: <a href="https://github.com/wallabag/wallabag/issues">a GitHub-on</a>
     helping:
         description: 'A wallabag szabad és nyílt forráskódú. Segíthetsz minket:'
-        by_contributing: 'hozzájárulással a projekthez:'
-        by_contributing_2: Ebben a Github jegyben vannak felsorolva az igényeink
-        by_paypal: Paypal-on keresztül
+        by_paypal: Liberapay-on keresztül
     contributors:
         description: Köszönet a wallabag webes alkalmazás közreműködőinek
     third_party:
@@ -302,7 +300,7 @@ howto:
         android:
             via_f_droid: F-Droid-on
             via_google_play: Google Play-en
-        ios: iTunes Store-ban
+        ios: App Store-ban
         windows: Microsoft Store-ban
     bookmarklet:
         description: 'Húzza ezt a hivatkozást a könyvjelzősávba:'
@@ -384,7 +382,7 @@ quickstart:
         description: Ha segítségre van szüksége, itt vagyunk az Ön számára.
         github: A GitHub-on
         email: E-mailben
-        gitter: A Gitter-en
+        matrix: A Matrix-en
 tag:
     page_title: Címkék
     list:
