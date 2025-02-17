@@ -65,6 +65,7 @@ config:
         feed: "Flux"
         ignore_origin: "Règles d'omission d'origine"
         reset: "Réinitialisation"
+        article_display: Affichage de l'article
     form:
         save: Enregistrer
     form_settings:
@@ -88,6 +89,16 @@ config:
         help_reading_speed: wallabag calcule une durée de lecture pour chaque article. Vous pouvez définir ici, grâce à cette liste déroulante, si vous lisez plus ou moins vite. wallabag recalculera la durée de lecture de chaque article.
         help_language: Vous pouvez définir la langue de l’interface de wallabag.
         help_pocket_consumer_key: Nécessaire pour l’import depuis Pocket. Vous pouvez le créer depuis votre compte Pocket.
+        help_display_thumbnails: Vous pouvez décidez d'afficher ou non les miniatures des articles. Utile pour les connexions lentes.
+        display_thumbnails_label: Afficher les miniatures des articles (utile pour les connexions lentes).
+        help_font: Vous pouvez choisir la famille de police que vous voulez utiliser.
+        font_label: Famille de police
+        fontsize_label: Taille de police
+        help_fontsize: Vous pouvez choisir la taille de police que vous voulez utiliser.
+        lineheight_label: Hauteur de la ligne
+        maxwidth_label: Largeur maximale
+        help_lineheight: Vous pouvez choisir la hauteur de ligne que vous voulez utiliser.
+        help_maxwidth: Vous pouvez choisir la largeur maximale que vous voulez utiliser.
     form_feed:
         description: "Les flux Atom fournis par wallabag vous permettent de lire vos articles sauvegardés dans votre lecteur de flux préféré. Pour pouvoir les utiliser, vous devez d’abord créer un jeton."
         token_label: "Jeton de flux"
@@ -130,6 +141,7 @@ config:
         entries: Supprimer TOUS les articles
         archived: Supprimer TOUS les articles archivés
         confirm: Êtes-vous vraiment sûr ? (C’EST IRRÉVERSIBLE)
+        tagging_rules: Supprimer TOUTES les règles de tags
     form_password:
         description: Vous pouvez changer ici votre mot de passe. Le mot de passe doit contenir au moins 8 caractères.
         old_password_label: Mot de passe actuel
@@ -145,7 +157,7 @@ config:
         card:
             new_tagging_rule: Créer une règle d'étiquetage
             import_tagging_rules: Importer des règles
-            import_tagging_rules_detail: Vous devez sélectionné un fichier JSON que vous avez précédemment exporté.
+            import_tagging_rules_detail: Vous devez sélectionner un fichier JSON que vous avez précédemment exporté.
             export_tagging_rules: Exporter les règles
             export_tagging_rules_detail: Un fichier JSON sera téléchargé et vous pourrez l'utiliser pour ré-importer les règles ou comme sauvegarde.
         file_label: Fichier JSON
@@ -240,6 +252,9 @@ entry:
         export_title: Exporter
         show_same_domain: Afficher les articles du même site
         assign_search_tag: Ajouter cette recherche comme un tag à chaque résultat
+        toggle_mass_action: Actions en masse
+        mass_action_tags_input_placeholder: étiquette1, étiquette2, étiquette3
+        add_tags: Ajouter des étiquettes
     filters:
         title: Filtres
         status_label: Status
@@ -265,6 +280,7 @@ entry:
         action:
             clear: Effacer
             filter: Filtrer
+        parsed_label: Pas récupéré correctement
     view:
         left_menu:
             back_to_top: Revenir en haut
@@ -315,6 +331,7 @@ entry:
         delete: Voulez-vous vraiment supprimer cet article ?
         delete_tag: Voulez-vous vraiment supprimer cette étiquette de cet article ?
         delete_entries: Voulez-vous vraiment supprimer ces articles ?
+        reload: Êtes-vous sûr·e de vouloir recharger cet article ?
     metadata:
         reading_time: Durée de lecture estimée
         reading_time_minutes_short: '%readingTime% min'
@@ -342,9 +359,7 @@ about:
         support: <a href="https://github.com/wallabag/wallabag/issues">sur GitHub</a>
     helping:
         description: 'wallabag est gratuit et opensource. Vous pouvez nous aider :'
-        by_contributing: 'en contribuant au projet :'
-        by_contributing_2: un ticket recense tous nos besoins
-        by_paypal: via Paypal
+        by_paypal: via Liberapay
     contributors:
         description: Merci aux contributeurs de l’application web de wallabag
     third_party:
@@ -371,7 +386,7 @@ howto:
         android:
             via_f_droid: via F-Droid
             via_google_play: via Google Play
-        ios: sur iTunes Store
+        ios: sur App Store
         windows: sur Microsoft Store
     bookmarklet:
         description: 'Glissez et déposez ce lien dans votre barre de favoris :'
@@ -411,7 +426,7 @@ quickstart:
     configure:
         title: Configurez l’application
         description: Pour voir une application qui vous correspond, allez voir du côté de la configuration de wallabag.
-        language: Changez la langue et le design de l’application
+        language: Changez la langue et l'interface
         rss: Activez les flux RSS
         tagging_rules: Écrivez des règles pour classer automatiquement vos articles
         feed: Activer les flux RSS
@@ -454,7 +469,7 @@ quickstart:
         description: Parce que vous avez peut-être besoin de nous poser une question, nous sommes disponibles pour vous.
         github: Sur GitHub
         email: Par courriel
-        gitter: Sur Gitter
+        matrix: Sur Matrix
 tag:
     confirm:
         delete: Supprimer le tag %name%
@@ -492,13 +507,13 @@ import:
     wallabag_v1:
         page_title: Importer > wallabag v1
         description: Cet outil va importer toutes vos données de wallabag v1. Sur votre page de configuration de wallabag v1, cliquez sur « Export JSON » dans la section « Exporter vos données de wallabag ». Vous allez récupérer un fichier « wallabag-export-1-xxxx-xx-xx.json ».
-        how_to: Choisissez le fichier de votre export wallabag v1 et cliquez sur le bouton ci-dessous pour l’importer.
+        how_to: Choisissez le fichier de votre export wallabag et cliquez sur le bouton ci-dessous pour l’importer.
     wallabag_v2:
         page_title: Importer > wallabag v2
         description: Cet outil va importer tous vos articles d’une autre instance de wallabag v2. Allez dans tous vos articles, puis, sur la barre latérale, cliquez sur « JSON ». Vous allez récupérer un fichier « All articles.json ».
     readability:
         page_title: Importer > Readability
-        description: Cet outil va importer toutes vos données de Readability. Sur la page des outils (https://www.readability.com/tools/), cliquez sur « Export your data » dans la section « Data Export ». Vous allez recevoir un courriel avec un lien pour télécharger le json (qui ne se finit pas par .json).
+        description: Cet outil va importer toutes vos données de Readability.
         how_to: Choisissez le fichier de votre export Readability et cliquez sur le bouton ci-dessous pour l’importer.
     worker:
         enabled: 'Les imports sont asynchrones. Une fois l’import commencé un worker externe traitera les messages un par un. Le service activé est :'
@@ -520,12 +535,21 @@ import:
         description: Sur la page « Backup » (https://pinboard.in/settings/backup), cliquez sur « JSON » dans la section « Bookmarks ». Un fichier json (sans extension) sera téléchargé (« pinboard_export »).
         how_to: Choisissez le fichier de votre export Pinboard et cliquez sur le bouton ci-dessous pour l’importer.
     elcurator:
-        description: Cet outil va importer tous vos articles depuis elCurator. Allez dans vos préférences sur elCurator et exportez vos contenus. Vous allez récupérer un fichier JSON.
+        description: Cet outil va importer tous vos articles depuis elCurator.
         page_title: Importer > elCurator
+        how_to: Choisissez le fichier de votre export elCurator et cliquez sur le bouton ci-dessous pour l’importer.
     delicious:
         page_title: Importer > del.icio.us
         how_to: Choisissez le fichier de votre export Delicious et cliquez sur le bouton ci-dessous pour l'importer.
         description: Depuis 2021, vous pouvez à nouveau exporter vos données depuis Delicious (https://del.icio.us/export). Choisissez le format "JSON" et téléchargez le (un fichier du genre "delicious_export.2021.02.06_21.10.json").
+    shaarli:
+        page_title: Importer > Shaarli
+        description: Cet importateur importera toutes vos signets Shaarli. Il suffit d'aller à la section Outils, puis dans « Base de données d'exportation », choisissez vos signets et exportez-les. Vous obtiendrez un fichier HTML.
+        how_to: Veuillez sélectionner le fichier de sauvegarde de signet et cliquez sur le bouton ci-dessous pour l'importer. Notez que le processus peut prendre beaucoup de temps puisque tous les articles doivent être récupérés.
+    pocket_html:
+        page_title: Importer > Pocket HTML
+        description: Cet importateur importera toutes vos signets Pocket (via exportation HTML). Il suffit d'aller à https://getpocket.com/export, puis d'exporter le fichier HTML. Un fichier HTML sera téléchargé (comme « ril_export.html »).
+        how_to: Veuillez choisir le fichier de sauvegarde de signets et cliquez sur le bouton ci-dessous pour l'importer. Pensez au fait que le processus peut prendre longtemps puisque tous les articles doivent être récupérés.
 developer:
     page_title: Gestion des clients API
     welcome_message: Bienvenue sur l’API de wallabag
@@ -630,7 +654,6 @@ flashes:
         notice:
             config_saved: "Les paramètres ont bien été mis à jour."
             password_updated: "Votre mot de passe a bien été mis à jour"
-            password_not_updated_demo: "En démo, vous ne pouvez pas changer le mot de passe de cet utilisateur."
             user_updated: "Vos informations personnelles ont bien été mises à jour"
             feed_updated: "La configuration des flux a bien été mise à jour"
             tagging_rules_updated: "Règles mises à jour"
@@ -647,6 +670,7 @@ flashes:
             tagging_rules_not_imported: Impossible d'importer les règles
             ignore_origin_rules_deleted: "Règle d'omission d'origine supprimée"
             ignore_origin_rules_updated: "Règle d'omission d'origine mise à jour"
+            tagging_rules_reset: Réinitialisation des règles de tags
     entry:
         notice:
             entry_already_saved: Article déjà sauvegardé le %date%
@@ -665,6 +689,7 @@ flashes:
         notice:
             tag_added: Étiquette ajoutée
             tag_renamed: "Étiquette renommée"
+            too_much_tags: Afin d'éviter des soucis de performance, il n'est pas possible d'ajouter plus de %tags% étiquettes ou d'avoir des étiquettes qui font plus de %characters% lettres.
     import:
         notice:
             failed: L’import a échoué, veuillez réessayer.

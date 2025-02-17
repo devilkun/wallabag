@@ -1,7 +1,7 @@
-FROM php:7.4-fpm AS rootless
+FROM php:8.1-fpm AS rootless
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG NODE_VERSION=16
+ARG NODE_VERSION=20
 
 RUN apt-get update \
     && apt-get install -y \
@@ -12,8 +12,7 @@ RUN apt-get update \
       openssl \
       software-properties-common
 
-RUN curl 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key' | apt-key add - \
-    && echo "deb https://deb.nodesource.com/node_${NODE_VERSION}.x $(lsb_release -cs) main" > /etc/apt/sources.list.d/nodesource.list
+RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash -
 
 RUN apt-get update && apt-get install -y \
         libmcrypt-dev \
@@ -59,6 +58,21 @@ RUN pecl install redis; \
         imagick \
         xdebug \
     ;
+
+RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
+    && architecture=$(uname -m) \
+    && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/$architecture/$version \
+    && mkdir -p /tmp/blackfire \
+    && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp/blackfire \
+    && mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get ('extension_dir');")/blackfire.so \
+    && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8307\n" > $PHP_INI_DIR/conf.d/blackfire.ini \
+    && rm -rf /tmp/blackfire /tmp/blackfire-probe.tar.gz
+
+RUN mkdir -p /tmp/blackfire \
+    && architecture=$(uname -m) \
+    && curl -A "Docker" -L https://blackfire.io/api/v1/releases/cli/linux/$architecture | tar zxp -C /tmp/blackfire \
+    && mv /tmp/blackfire/blackfire /usr/bin/blackfire \
+    && rm -Rf /tmp/blackfire
 
 RUN npm install -g yarn
 

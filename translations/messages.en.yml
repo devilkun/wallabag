@@ -65,6 +65,7 @@ config:
         new_user: Add a user
         ignore_origin: 'Ignore origin rules'
         reset: 'Reset area'
+        article_display: 'Article display'
     form:
         save: Save
     form_settings:
@@ -88,6 +89,16 @@ config:
         help_reading_speed: wallabag calculates a reading time for each article. You can define here, thanks to this list, if you are a fast or a slow reader. wallabag will recalculate the reading time for each article.
         help_language: You can change the language of wallabag interface.
         help_pocket_consumer_key: Required for Pocket import. You can create it in your Pocket account.
+        help_display_thumbnails: You can decide if you want to display or not articles thumbnails. Useful for slow connections.
+        help_font: You can choose the font family you want to use.
+        help_fontsize: You can choose the font size you want to use.
+        help_lineheight: You can choose the line height you want to use.
+        help_maxwidth: You can choose the maximal width you want to use.
+        display_thumbnails_label: Display articles thumbnails (useful for slow connections).
+        font_label: Font family
+        fontsize_label: Font size
+        lineheight_label: Line height
+        maxwidth_label: Maximal width
     form_feed:
         description: 'Atom feeds provided by wallabag allow you to read your saved articles with your favourite Atom reader. You need to generate a token first.'
         token_label: 'Feed token'
@@ -127,6 +138,7 @@ config:
         description: By hitting buttons below you'll have ability to remove some information from your account. Be aware that these actions are IRREVERSIBLE.
         annotations: Remove ALL annotations
         tags: Remove ALL tags
+        tagging_rules: Remove ALL tagging rules
         entries: Remove ALL entries
         archived: Remove ALL archived entries
         confirm: Are you really sure? (THIS CAN'T BE UNDONE)
@@ -240,6 +252,9 @@ entry:
         export_title: Export
         show_same_domain: Show articles with the same domain
         assign_search_tag: Assign this search as a tag to each result
+        toggle_mass_action: Toggle mass action
+        mass_action_tags_input_placeholder: tag1, tag2, tag3
+        add_tags: Add tags
     filters:
         title: Filters
         status_label: Status
@@ -247,6 +262,7 @@ entry:
         starred_label: Starred
         unread_label: Unread
         annotated_label: Annotated
+        parsed_label: Not correctly fetched
         preview_picture_label: Has a preview picture
         preview_picture_help: Preview picture
         is_public_label: Has a public link
@@ -315,6 +331,7 @@ entry:
         delete: Are you sure you want to remove that article?
         delete_tag: Are you sure you want to remove that tag from that article?
         delete_entries: Are you sure you want to remove these articles?
+        reload: Are you sure you want to reload that article?
     metadata:
         reading_time: Estimated reading time
         reading_time_minutes_short: '%readingTime% min'
@@ -342,9 +359,7 @@ about:
         support: <a href="https://github.com/wallabag/wallabag/issues">on GitHub</a>
     helping:
         description: 'wallabag is free and open source. You can help us:'
-        by_contributing: 'by contributing to the project:'
-        by_contributing_2: an issue lists all our needs
-        by_paypal: via Paypal
+        by_paypal: via Liberapay
     contributors:
         description: Thank you to contributors on wallabag web application
     third_party:
@@ -371,7 +386,7 @@ howto:
         android:
             via_f_droid: via F-Droid
             via_google_play: via Google Play
-        ios: on the iTunes Store
+        ios: on the App Store
         windows: on the Microsoft Store
     bookmarklet:
         description: 'Drag and drop this link to your bookmarks bar:'
@@ -411,7 +426,7 @@ quickstart:
     configure:
         title: Configure the application
         description: In order to have an application which suits you, have a look into the configuration of wallabag.
-        language: Change language and design
+        language: Change language and interface
         feed: 'Enable feeds'
         tagging_rules: Write rules to automatically tag your articles
     admin:
@@ -453,7 +468,7 @@ quickstart:
         description: If you need some help, we are here for you.
         github: On GitHub
         email: By email
-        gitter: On Gitter
+        matrix: On Matrix
 tag:
     confirm:
         delete: Delete the %name% tag
@@ -497,10 +512,15 @@ import:
         description: This importer will import all your wallabag v2 articles. Go to All articles, then, on the export sidebar, click on "JSON". You will have a "All articles.json" file.
     elcurator:
         page_title: 'Import > elCurator'
-        description: 'This importer will import all your elCurator articles. Go to your preferences in your elCurator account and then, export your content. You will have a JSON file.'
+        description: 'This importer will import all your elCurator articles.'
+        how_to: Please select your elCurator export and click on the button below to upload and import it.
+    omnivore:
+        page_title: 'Import > Omnivore'
+        description: 'This importer will import all your Omnivore articles.'
+        how_to: Please unzip your Omnivore export, then upload each JSON file named "metadata_x_to_y.json" one by one.
     readability:
         page_title: Import > Readability
-        description: This importer will import all your Readability articles. On the tools (https://www.readability.com/tools/) page, click on "Export your data" in the "Data Export" section. You will received an email to download a json (which does not end with .json in fact).
+        description: This importer will import all your Readability articles.
         how_to: Please select your Readability export and click on the button below to upload and import it.
     worker:
         enabled: 'Import is made asynchronously. Once the import task is started, an external worker will handle jobs one at a time. The current service is:'
@@ -525,6 +545,14 @@ import:
         page_title: Import > del.icio.us
         description: This importer will import all your Delicious bookmarks. Since 2021, you can export again your data from it using the export page (https://del.icio.us/export). Choose the "JSON" format and download it (like "delicious_export.2021.02.06_21.10.json").
         how_to: Please select your Delicious export and click on the button below to upload and import it.
+    shaarli:
+        page_title: Import > Shaarli
+        description: This importer will import all your Shaarli bookmarks. Just go to the Tools section, then into "Export database", choose your bookmarks and export them. You will obtain a HTML file.
+        how_to: Please choose the bookmark backup file and click on the button below to import it. Note that the process may take a long time since all articles have to be fetched.
+    pocket_html:
+        page_title: Import > Pocket HTML
+        description: This importer will import all your Pocket bookmarks (via HTML export). Just go to https://getpocket.com/export, then export the HTML file. An HTML file will be downloaded (like "ril_export.html").
+        how_to: Please choose the bookmark backup file and click on the button below to import it. Note that the process may take a long time since all articles have to be fetched.
 developer:
     page_title: API clients management
     welcome_message: Welcome to the wallabag API
@@ -646,7 +674,6 @@ flashes:
         notice:
             config_saved: Config saved.
             password_updated: Password updated
-            password_not_updated_demo: In demonstration mode, you can't change password for this user.
             user_updated: Information updated
             tagging_rules_updated: Tagging rules updated
             tagging_rules_deleted: Tagging rule deleted
@@ -655,6 +682,7 @@ flashes:
             feed_token_revoked: 'Feed token revoked'
             annotations_reset: Annotations reset
             tags_reset: Tags reset
+            tagging_rules_reset: Tagging rules reset
             entries_reset: Entries reset
             archived_reset: Archived entries deleted
             otp_enabled: Two-factor authentication enabled
@@ -681,6 +709,7 @@ flashes:
         notice:
             tag_added: Tag added
             tag_renamed: 'Tag renamed'
+            too_much_tags: To avoid performance issues, you can't add more than %tags% tags at once or tags having more than %characters% characters.
     import:
         notice:
             failed: Import failed, please try again.

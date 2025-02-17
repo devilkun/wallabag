@@ -351,9 +351,7 @@ about:
         documentation: ドキュメント
     helping:
         description: 'wallabag はフリーでオープン ソースです。私たちを支援することができます:'
-        by_contributing: 'プロジェクトへの貢献:'
-        by_contributing_2: 問題のリスト、すべてのニーズ
-        by_paypal: Paypal 経由で
+        by_paypal: Liberapay 経由で
     contributors:
         description: Wallabag web アプリケーションの貢献者に感謝します
     third_party:
@@ -373,7 +371,7 @@ howto:
         android:
             via_f_droid: F-Droid 経由で
             via_google_play: Google Play 経由で
-        ios: iTunes ストアで
+        ios: App Store ストアで
         windows: Microsoft Store で
     shortcuts:
         open_article: 選択した記事を表示する
@@ -464,7 +462,7 @@ quickstart:
         description: 何か助けが必要な場合は、私たちがお役に立ちます。
         github: GitHub 上で
         email: メールで
-        gitter: Gitter 上で
+        matrix: Matrix 上で
 tag:
     list:
         number_on_the_page: '{0} タグはありません。|{1} 1 つタグがあります。|]1,Inf[ %count% タグがあります。'
@@ -613,7 +611,6 @@ flashes:
         notice:
             config_saved: 設定を保存しました。
             password_updated: パスワードを更新しました
-            password_not_updated_demo: デモ モードでは、このユーザーのパスワードを変更できません。
             user_updated: 情報を更新しました
             rss_updated: RSS 情報を更新しました
             tagging_rules_updated: タグ付けルールを更新しました

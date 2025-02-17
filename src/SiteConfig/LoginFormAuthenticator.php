@@ -1,0 +1,101 @@
+<?php
+
+namespace Wallabag\SiteConfig;
+
+use Symfony\Component\BrowserKit\HttpBrowser;
+use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use Wallabag\ExpressionLanguage\AuthenticatorProvider;
+
+class LoginFormAuthenticator
+{
+    private HttpBrowser $browser;
+    private ExpressionLanguage $expressionLanguage;
+
+    public function __construct(HttpBrowser $browser, AuthenticatorProvider $authenticatorProvider)
+    {
+        $this->browser = $browser;
+        $this->expressionLanguage = new ExpressionLanguage(null, [$authenticatorProvider]);
+    }
+
+    /**
+     * Logs the configured user on the given Guzzle client.
+     *
+     * @return self
+     */
+    public function login(SiteConfig $siteConfig)
+    {
+        $postFields = [
+            $siteConfig->getUsernameField() => $siteConfig->getUsername(),
+            $siteConfig->getPasswordField() => $siteConfig->getPassword(),
+        ] + $this->getExtraFields($siteConfig);
+
+        $this->browser->request('POST', $siteConfig->getLoginUri(), $postFields);
+
+        return $this;
+    }
+
+    /**
+     * Checks if we are logged into the site, but without calling the server (e.g. do we have a Cookie).
+     *
+     * @return bool
+     */
+    public function isLoggedIn(SiteConfig $siteConfig)
+    {
+        foreach ($this->browser->getCookieJar()->all() as $cookie) {
+            // check required cookies
+            if ($cookie->getDomain() === $siteConfig->getHost()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks from the HTML of a page if authentication is requested by a grabbed page.
+     *
+     * @param string $html
+     *
+     * @return bool
+     */
+    public function isLoginRequired(SiteConfig $siteConfig, $html)
+    {
+        // need to check for the login dom element ($options['not_logged_in_xpath']) in the HTML
+        try {
+            $crawler = new Crawler((string) $html);
+
+            $loggedIn = $crawler->evaluate((string) $siteConfig->getNotLoggedInXpath());
+        } catch (\Throwable $e) {
+            return false;
+        }
+
+        return \count($loggedIn) > 0;
+    }
+
+    /**
+     * Returns extra fields from the configuration.
+     * Evaluates any field value that is an expression language string.
+     *
+     * @return array
+     */
+    private function getExtraFields(SiteConfig $siteConfig)
+    {
+        $extraFields = [];
+
+        foreach ($siteConfig->getExtraFields() as $fieldName => $fieldValue) {
+            if ('@=' === substr($fieldValue, 0, 2)) {
+                $fieldValue = $this->expressionLanguage->evaluate(
+                    substr($fieldValue, 2),
+                    [
+                        'config' => $siteConfig,
+                    ]
+                );
+            }
+
+            $extraFields[$fieldName] = $fieldValue;
+        }
+
+        return $extraFields;
+    }
+}

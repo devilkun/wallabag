@@ -1,35 +1,20 @@
-wallabag_annotation:
-    resource: "@WallabagAnnotationBundle/Controller/"
-    type: annotation
-    prefix: /
-
-wallabag_import:
-    resource: "@WallabagImportBundle/Controller/"
-    type: annotation
-    prefix: /import
-
-wallabag_user:
-    resource: "@WallabagUserBundle/Controller/"
-    type: annotation
-    prefix: /users
-
-wallabag_api:
-    resource: "@WallabagApiBundle/Controller/"
-    type: annotation
-    prefix: /
-
 app:
-    resource: "@WallabagCoreBundle/Controller/"
+    resource: ../../src/Controller/
     type: annotation
 
 doc-api:
-    resource: "@NelmioApiDocBundle/Resources/config/routing/swaggerui.xml"
+    resource: "@NelmioApiDocBundle/config/routing/swaggerui.xml"
     prefix: /api/doc
+
+doc-api-json:
+    path: /api/doc.json
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger }
 
 homepage:
     path: "/{page}"
     defaults:
-        _controller: 'Wallabag\CoreBundle\Controller\EntryController::showUnreadAction'
+        _controller: 'Wallabag\Controller\EntryController::showUnreadAction'
         page : 1
     requirements:
         page: \d+

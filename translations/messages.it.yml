@@ -64,6 +64,7 @@ config:
         rules: Regole di etichettatura
         new_user: Aggiungi utente
         feed: Flussi
+        reset: Area di reset
     form:
         save: Salva
     form_settings:
@@ -171,6 +172,7 @@ config:
             import_tagging_rules_detail: Devi selezionare il file JSON che hai precedentemente esportato.
             import_tagging_rules: Importa le regole di etichettatura
             new_tagging_rule: Crea una regola di etichettatura
+            export_tagging_rules_detail: Questo scaricherà un file JSON che potrai usare per importare le regole di etichettatura altrove o per farne un backup.
 entry:
     default_title: Titolo del contenuto
     page_titles:
@@ -232,8 +234,8 @@ entry:
             add_a_tag: Aggiungi un'etichetta
             share_content: Condividi
             share_email_label: E-mail
-            public_link: Link pubblico
-            delete_public_link: Elimina link pubblico
+            public_link: collegamento pubblico
+            delete_public_link: elimina il collegamento pubblico
             export: Esporta
             print: Stampa
             problem:
@@ -290,9 +292,7 @@ about:
         support: <a href="https://github.com/wallabag/wallabag/issues">su GitHub</a>
     helping:
         description: 'wallabag è gratuito ed OpenSource. Puoi aiutarci:'
-        by_contributing: 'per contribuire al progetto:'
-        by_contributing_2: un elenco delle attività richieste
-        by_paypal: via Paypal
+        by_paypal: via Liberapay
     contributors:
         description: Un grazie ai collaboratori di wallabag web application
     third_party:
@@ -319,7 +319,7 @@ howto:
         android:
             via_f_droid: via F-Droid
             via_google_play: via Google Play
-        ios: sullo store di iTunes
+        ios: sullo store di App Store
         windows: sullo store di Microsoft
     bookmarklet:
         description: 'Trascinando e rilasciando questo collegamento sulla barra dei preferiti del tuo browser:'
@@ -401,7 +401,7 @@ quickstart:
         description: Se hai bisogno di aiuto, siamo qui per te.
         github: Su GitHub
         email: Per e-mail
-        gitter: Su Gitter
+        matrix: Su Matrix
 tag:
     page_title: Etichette
     list:
@@ -544,7 +544,6 @@ flashes:
         notice:
             config_saved: Configurazione salvata.
             password_updated: Password aggiornata
-            password_not_updated_demo: In modalità demo, non puoi cambiare la password dell'utente.
             user_updated: Informazioni aggiornate
             rss_updated: Informazioni RSS aggiornate
             tagging_rules_updated: Regole di etichettatura aggiornate
@@ -554,6 +553,8 @@ flashes:
             tags_reset: Reset etichette
             entries_reset: Reset articoli
             archived_reset: Voci archiviate eliminate
+            tagging_rules_imported: Regole di etichettatura importate
+            tagging_rules_not_imported: Errore nell'importare le regole di etichettatura
     entry:
         notice:
             entry_already_saved: Contenuto già salvato in data %date%
@@ -615,3 +616,6 @@ site_credential:
         delete: Elimina
         delete_confirm: Sei sicuro/a?
         back_to_list: Torna alla lista
+ignore_origin_instance_rule:
+    new_ignore_origin_instance_rule: Crea una regola globale per ignorare l'origine
+    page_title: Regole globali per ignorare l'origine

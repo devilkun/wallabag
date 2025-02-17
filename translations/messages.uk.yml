@@ -312,9 +312,7 @@ about:
         support: <a href="https://github.com/wallabag/wallabag/issues">на GitHub</a>
     helping:
         description: 'wallabag — вільне програмне забезпечення з відкритим кодом. Ви можете допомогти нам:'
-        by_contributing: 'покращуючи проєкт:'
-        by_contributing_2: список проблем, які нам потрібно вирішити
-        by_paypal: через Paypal
+        by_paypal: через Liberapay
     contributors:
         description: Дякуємо усім, хто долучився до розробки веб-застосунку wallabag
     third_party:
@@ -341,7 +339,7 @@ howto:
         android:
             via_f_droid: у F-Droid
             via_google_play: у Google Play
-        ios: в iTunes Store
+        ios: в App Store
         windows: у Microsoft Store
     bookmarklet:
         description: 'Перетягніть посилання на панель закладок:'
@@ -423,7 +421,7 @@ quickstart:
         description: Якщо вам потрібна допомога, ми завжди поруч.
         github: На GitHub
         email: Електронною поштою
-        gitter: В Gitter
+        matrix: В Matrix
 tag:
     page_title: Теги
     list:
@@ -588,7 +586,6 @@ flashes:
         notice:
             config_saved: Конфігурацію збережено.
             password_updated: Пароль оновлено
-            password_not_updated_demo: У режимі демонстрації ви не можете змінити пароль цього користувача.
             user_updated: Інформацію оновлено
             feed_updated: Інформацію про RSS оновлено
             tagging_rules_updated: Правила тегування оновлено

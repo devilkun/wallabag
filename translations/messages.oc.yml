@@ -62,10 +62,11 @@ config:
         user_info: Mon compte
         password: Senhal
         rules: Règlas d'etiquetas automaticas
-        new_user: Crear un compte
+        new_user: Apondre un utilizaire
         feed: Flux
         ignore_origin: Règlas d’omission d’origina
         reset: Reïnicializar
+        article_display: Afichatge de l’article
     form:
         save: Enregistrar
     form_settings:
@@ -89,6 +90,16 @@ config:
         help_reading_speed: wallabag calcula lo temps de lectura per cada article. Podètz lo definir aquí, gràcias a aquesta lista, se sètz un legeire rapid o lent. wallabag tornarà calcular lo temps de lectura per cada article.
         help_language: Podètz cambiar la lenga de l'interfàcia de wallabag.
         help_pocket_consumer_key: Requesida per l'importacion de Pocket. Podètz la crear dins vòstre compte Pocket.
+        display_thumbnails_label: Afichar las miniaturas dels articles (util per las connexions lentas).
+        help_display_thumbnails: Podètz decidir se volètz afichar o non las miniaturas. Util per las connexions lentas.
+        help_lineheight: Podètz causir la nautor de linha que volètz utilizar.
+        help_font: Podètz causir la familha de polissa que volètz utilizar.
+        help_fontsize: Podètz causir la talha de polissa que volètz utilizar.
+        font_label: Familha de polissa
+        help_maxwidth: Podètz causir la largor maximala que volètz utilizar.
+        fontsize_label: Talha de polissa
+        lineheight_label: Nautor de linha
+        maxwidth_label: Largor maximala
     form_rss:
         description: Los fluxes RSS fornits per wallabag vos permeton de legir vòstres articles salvagardats dins vòstre lector de fluxes preferit. Per los poder emplegar, vos cal, d'en primièr crear un geton.
         token_label: Geton RSS
@@ -122,6 +133,7 @@ config:
             state_enabled: Activat
             table_state: Estat
             emailTwoFactor_label: En utilizant lo corrièl (recebètz un còdi per corrièl)
+            googleTwoFactor_label: En utilizant una aplicacion A2F (dobrissètz l’aplicacion, coma Google Authenticator, Authy o FreeOTP, per obténer un senhal a usatge unic)
         login_label: Identificant
     reset:
         title: Zòna de reïnicializacion (Mèfi zòna perilhosa)
@@ -182,6 +194,8 @@ config:
             new_tagging_rule: Crear una règla d’etiquetatge
             import_tagging_rules: Importar de règlas
             export_tagging_rules: Exportar las règlas
+            export_tagging_rules_detail: Se telecargarà un fichièr JSON e poiretz l’utilizar per tornar importar las règlas o coma còpia de seguretat.
+            import_tagging_rules_detail: Vos cal seleccionar un fichièr JSON qu’avètz ja exportat.
     form_ignore_origin_rules:
         faq:
             meaning: Significacion
@@ -190,9 +204,16 @@ config:
             variable_description:
                 label: Variabla
                 host: Òste
+                _all: Adreça complèta, utila per las expressions racionalas
             operator_description:
                 label: Operator
                 equal_to: Val…
+                matches: 'Pròva se un <i>subjècte</i> correspond a una <i>recèrca</i> (non sensible a la cassa).<br />Exemple : <code>_all ~ "https?://rss.example.com/foobar/.*"</code>'
+            variables_available_title: Quinas variablas e operators pòdi utilizar per escriure de règlas ?
+            ignore_origin_rules_definition_title: De qué significan las règlas d'omission d'origina ?
+            ignore_origin_rules_definition_description: Wallabag las utiliza per ignorar automaticament una adreça d’origina aprèp una redireccion. <br />Se se produtz una redireccion pendent l’obtencion d’articles novèls, totas las règlas d’origina seràn ignoradas. (<i>règlas utilizaire o instància</i>) seràn utilizadas per ignorar o non l’adreça d’origina.
+            how_to_use_them_description: Imaginem que voliatz ometre l'origina d'un article venent de « <i>rss.example.com</i> » (<i>en sabent qu’aprèp la redireccion, l'adreça reala es example.com</i>).<br />Dins aqueste cas, deuriatz metre « host = "rss.example.com" » al camp <i>Règla</i>.
+            variables_available_description: "Las variablas e operators seguents se pòdon emplegar per escriure de règlas d'omission d'origina :"
     form_feed:
         token_label: Geton flux
         feed_link:
@@ -206,11 +227,17 @@ config:
         token_reset: Reïnicializar vòstre geton
         token_revoke: Suprimir lo geton
         feed_links: Adreças dels flux
+        description: Los flux Atom provesits per wallabag vos permeton de legir vòstres articles salvagardats dins vòstre lector de flux preferit. Per los poder utilizar, vos cal d’en primièr crear un geton.
     otp:
         app:
             enable: Activar
             cancel: Anullar
             qrcode_label: Còdi QR
+            two_factor_code_description_2: 'Podètz numerizar aqueste còdi QR amb vòstra aplicacion :'
+            two_factor_code_description_4: 'Ensajatz lo còdi generat per vòstra aplicacion A2F :'
+            two_factor_code_description_3: 'Oblidem pas de salvagardar aquestes còdis de secors dins un endrech segur, poiretz los utilizar s’avètz pas mai accès a vòstra aplicacion A2F :'
+            two_factor_code_description_5: 'Se vesètz pas lo còdi QR o que lo podètz pas numerizar, picatz la clau seguenta dins vòstra aplicacion :'
+            two_factor_code_description_1: Venètz d’activar l’autentificacion a dos factors, dobrissètz l’aplicacion A2F per configurar la generacion del senhal a usatge unic. Aquestas informacions dispareisseràn après una actualizacion de la pagina.
         page_title: Autentificacion a dos factors
 entry:
     default_title: Títol de l'article
@@ -238,6 +265,11 @@ entry:
         toogle_as_star: Marcar coma favorit
         delete: Suprimir
         export_title: Exportar
+        show_same_domain: Mostrar totes los articles del meteis domeni
+        assign_search_tag: Apondre aquesta recèrca coma etiqueta a cada resultat
+        toggle_mass_action: Accions collectiva
+        mass_action_tags_input_placeholder: etiqueta1, etiqueta2, etiqueta3
+        add_tags: Apondre etiquetas
     filters:
         title: Filtres
         status_label: Estatus
@@ -263,6 +295,7 @@ entry:
             clear: Escafar
             filter: Filtrar
         annotated_label: Anotat
+        parsed_label: Non recuperat corrèctament
     view:
         left_menu:
             back_to_top: Tornar en naut
@@ -295,7 +328,7 @@ entry:
         published_by: Publicat per
         provided_by: Provesit per
     new:
-        page_title: Enregistrar un novèl article
+        page_title: Enregistrar una entrada novèla
         placeholder: http://website.com
         form_new:
             url_label: Url
@@ -312,6 +345,8 @@ entry:
     confirm:
         delete: Sètz segur de voler suprimir aqueste article ?
         delete_tag: Sètz segur de voler levar aquesta etiqueta de l'article ?
+        delete_entries: Volètz vertadièrament suprimir aquestes articles ?
+        reload: Volètz vertadièrament recargar aqueste article ?
     metadata:
         reading_time_minutes_short: '%readingTime% min'
         address: Adreça
@@ -339,9 +374,7 @@ about:
         support: <a href="https://github.com/wallabag/wallabag/issues">sur GitHub</a>
     helping:
         description: 'wallabag es a gratuit e opensource. Nos podètz ajudar :'
-        by_contributing: 'en participant lo projècte :'
-        by_contributing_2: un bilhet recensa totes nòstres besonhs
-        by_paypal: via Paypal
+        by_paypal: via Liberapay
     contributors:
         description: Mercés als contributors de l'aplicacion web de wallabag
     third_party:
@@ -368,7 +401,7 @@ howto:
         android:
             via_f_droid: via F-Droid
             via_google_play: via Google Play
-        ios: sus iTunes Store
+        ios: sus App Store
         windows: sus Microsoft Store
     bookmarklet:
         description: 'Lisatz-depausatz aqueste ligam dins vòstra barra de favorits :'
@@ -408,7 +441,7 @@ quickstart:
     configure:
         title: Configurar l'aplicacion
         description: Per fin d'aver una aplicacion que vos va ben, anatz veire la configuracion de wallabag.
-        language: Cambiar la lenga e l'estil de l'aplicacion
+        language: Cambiar la lenga e l'intterfàcia
         rss: Activatz los fluxes RSS
         tagging_rules: Escrivètz de règlas per classar automaticament vòstres articles
         feed: Activar los flux RSS
@@ -451,13 +484,14 @@ quickstart:
         description: Perque avètz benlèu besonh de nos pausar una question, sèm disponibles per vosautres.
         github: Sus GitHub
         email: Per e-mail
-        gitter: Sus Gitter
+        matrix: Sus Matrix
 tag:
     page_title: Etiquetas
     list:
         number_on_the_page: "{0} I a pas cap d'etiquetas.|{1} I a una etiqueta.|]1,Inf[ I a %count% etiquetas."
         see_untagged_entries: Afichar las entradas sens etiquetas
         untagged: Articles sens etiqueta
+        no_untagged_entries: Cap d’article sens etiqueta.
     new:
         add: Ajustar
         placeholder: Podètz ajustar mai qu'una etiqueta, separadas per de virgula.
@@ -494,7 +528,7 @@ import:
         description: Aquesta aisina importarà totas vòstras donadas d'una instància mai de wallabag v2. Anatz dins totes vòstres articles, puèi, sus la barra laterala, clicatz sus "JSON". Traparetz un fichièr "All articles.json".
     readability:
         page_title: Importar > Readability
-        description: Aquesta aisina importarà totas vòstres articles de Readability. Sus la pagina de l'aisina (https://www.readability.com/tools/), clicatz sus "Export your data" dins la seccion "Data Export". Recebretz un corrièl per telecargar un json (qu'acaba pas amb un .json de fach).
+        description: Aquesta aisina importarà totas vòstres articles de Readability.
         how_to: Mercés de seleccionar vòstre Readability fichièr e de clicar sul boton dejós per lo telecargar e l'importar.
     worker:
         enabled: "L'importacion se fa de manièra asincròna. Un còp l'importacion lançada, una aisina extèrna s'ocuparà dels articles un per un. Lo servici actual es :"
@@ -515,6 +549,21 @@ import:
         page_title: Importar > Pinboard
         description: Aquesta aisina importarà totas vòstres articles de Pinboard. Sus la pagina de salvagarda (https://pinboard.in/settings/backup) , clicatz sus "JSON" dins la seccion "Bookmarks". Se poirà telecargar un fichièr JSON (coma "pinboard_export").
         how_to: Mercés de causir vòstre fichièr Pinboard e de clicar sul boton dejós per lo telecargar e l'importar.
+    delicious:
+        page_title: Importar > del.icio.us
+        description: Dempuèi 2021, podètz tornamai exportar vòstras donadas de Delicious (https://del.icio.us/export). Causissètz lo format « JSON » e telecargatz-lo (un fichièr de l’estil « delicious_export.2021.02.06_21.10.json »).
+        how_to: Causissètz lo fichièr de vòstra exportacion Delicious e clicatz lo boton çai jos per l’importar.
+    elcurator:
+        page_title: Importar > elCurator
+        description: Aquesta aisina importarà totes vòstres articles a partir de elCurator.
+    shaarli:
+        page_title: Importar > Shaarli
+        description: Aquesta aisina d’importacion importarà totes vòstres marcapagina Shaarli. Anatz simplament a la seccion Aisinas puèi « Banca de donadas », causissètz vòstres marcapaginas e exportatz-los. Obtendretz un fichièr HTML.
+        how_to: Mercés de seleccionar lo fichièr de salvagarda de marcapaginas e de clicar lo boton çai-jos per l’importar. Remarcatz qu’aquò pòt trigar, lo temps que totes los articles sián recuperats.
+    pocket_html:
+        page_title: Importar > Pocket HTML
+        description: Aquesta aisina d’importacion importarà totes vòstres marcadors Pocket (via un expòrt HTML). Anatz simplament a https://getpocket.com/export puèi exportar lo fichièr HTML. Se telecargarà un fichièr HTML (coma « ril_export.html »).
+        how_to: Mercés de seleccionar lo fichièr de salvagarda de marcadors e de clicar lo boton çai-jos per l’importar. Remarcatz qu’aquò pòt trigar, lo temps que totes los articles sián recuperats.
 developer:
     page_title: Gestion dels clients API
     welcome_message: Vos desirem la benvenguda sus l'API de wallabag
@@ -541,7 +590,7 @@ developer:
         page_description: Anatz crear un novèl client. Mercés de garnir l'url de redireccion cap a vòstra aplicacion.
         form:
             name_label: Nom del client
-            redirect_uris_label: URLs de redireccion
+            redirect_uris_label: URLs de redireccion (opcional)
             save_label: Crear un novèl client
         action_back: Retorn
         copy_to_clipboard: Copiar
@@ -590,6 +639,8 @@ user:
         delete: Suprimir
         delete_confirm: Sètz segur ?
         back_to_list: Tornar a la lista
+        twofactor_google_label: Autentificacion dos factors per aplicacion OTP
+        twofactor_email_label: Autentificacion a dos factors via corrièl
     search:
         placeholder: Filtrar per nom d'utilizaire o corrièl
 site_credential:
@@ -618,7 +669,6 @@ flashes:
         notice:
             config_saved: Los paramètres son ben estats meses a jorn.
             password_updated: Vòstre senhal es ben estat mes a jorn
-            password_not_updated_demo: En demostracion, podètz pas cambiar lo senhal d'aqueste utilizaire.
             user_updated: Vòstres informacions personnelas son ben estadas mesas a jorn
             rss_updated: La configuracion dels fluxes RSS es ben estada mesa a jorn
             tagging_rules_updated: Règlas misa a jorn
@@ -629,6 +679,14 @@ flashes:
             entries_reset: Articles levats
             archived_reset: Articles archivat suprimits
             feed_updated: Configuracion RSS actualizada
+            feed_token_updated: Geton dels flux actualizat
+            feed_token_revoked: Geton dels flux suprimit
+            otp_disabled: Autentificacion a dos factors desactivada
+            tagging_rules_imported: Règlas ben importadas
+            tagging_rules_not_imported: Error pendent l’importacion de las règlas d’etiquetatge
+            ignore_origin_rules_deleted: Règla d’omission d’origina suprimida
+            ignore_origin_rules_updated: Règla d’omission d’origina actualizada
+            otp_enabled: Autentificacion a dos factors activada
     entry:
         notice:
             entry_already_saved: Article ja salvagardat lo %date%
@@ -642,10 +700,12 @@ flashes:
             entry_starred: Article ajustat dins los favorits
             entry_unstarred: Article quitat dels favorits
             entry_deleted: Article suprimit
+            no_random_entry: Cap d’article correspondent als critèris pas trobat
     tag:
         notice:
             tag_added: Etiqueta ajustada
             tag_renamed: Etiqueta renomenada
+            too_much_tags: Per evitar de problèmas de performança,podètz pas apondre mai de %tags% etiquetas a l’encòp o amb mai de %characters% caractèrs.
     import:
         notice:
             failed: L'importacion a fracassat, mercés de tornar ensajar.
@@ -669,6 +729,11 @@ flashes:
             added: Identificant per "%host%" ajustat
             updated: Identificant per "%host%" mes a jorn
             deleted: Identificant per "%host%" suprimit
+    ignore_origin_instance_rule:
+        notice:
+            updated: Règla globala d’omission d’origina actualizada
+            added: Règla globala d’omission aponduda
+            deleted: Règla globala d’omission d’origina suprimida
 ignore_origin_instance_rule:
     form:
         back_to_list: Tornar a la lista
@@ -681,3 +746,8 @@ ignore_origin_instance_rule:
         yes: Òc
         edit_action: Modificar
         actions: Accions
+        create_new_one: Crear una règla globala novèla d’origina ignorada
+    page_title: Règlas globalas d’omission d’origina
+    new_ignore_origin_instance_rule: Crear una règla globala d’omission d’origina
+    edit_ignore_origin_instance_rule: Editar una règla globala d’omission d’origina
+    description: Aquí podètz gerir las règlas globalas d’omission d’origina utilizadas per ignorar de modèls d’url d’origina.

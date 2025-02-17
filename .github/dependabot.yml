@@ -7,6 +7,13 @@ updates:
     time: "04:00"
     timezone: Europe/Paris
   open-pull-requests-limit: 10
+  groups:
+    babel-dependencies:
+      patterns:
+        - "*babel*"
+    fontsource-dependencies:
+      patterns:
+        - "*fontsource*"
   ignore:
   - dependency-name: materialize-css
     versions:
@@ -18,14 +25,28 @@ updates:
     time: "04:00"
     timezone: Europe/Paris
   open-pull-requests-limit: 10
+  groups:
+    symfony-dependencies:
+      patterns:
+        - "symfony/*"
+    twig-dependencies:
+      patterns:
+        - "twig/*"
+    phpstan-dependencies:
+      patterns:
+        - "phpstan/*"
   reviewers:
   - j0k3r
-  - tcitworld
+  - yguedidi
   - Kdecherf
   ignore:
   - dependency-name: lcobucci/jwt
     versions:
     - ">= 4.2.0"
+  # until we add support for Symfony 5+
+  - dependency-name: symfony/*
+    versions:
+    - ">= 5.0.0"
 - package-ecosystem: github-actions
   directory: "/"
   schedule:

@@ -261,9 +261,7 @@ about:
         support: '<a href="https://github.com/wallabag/wallabag/issues">บน GitHub</a>'
     helping:
         description: 'wallabag จะฟรีและเปิดต้นฉบับแล้วคุณสามารถช่วยพวกเรา:'
-        by_contributing: 'โดยผู้มีส่วนร่วมโปรเจค:'
-        by_contributing_2: 'ฉบับของรายการทั้งหมดที่พวกเราต้องการ'
-        by_paypal: 'ผ่านทาง Paypal'
+        by_paypal: 'ผ่านทาง Liberapay'
     contributors:
         description: 'ขอขอบคุณผู้มีส่วนร่วมบนเว็บแอพพลิเคชั่น wallabag'
     third_party:
@@ -290,7 +288,7 @@ howto:
         android:
             via_f_droid: 'ผ่านทาง F-Droid'
             via_google_play: 'ผ่านทาง Google Play'
-        ios: 'บน iTunes Store'
+        ios: 'บน App Store'
         windows: 'บน Microsoft Store'
     bookmarklet:
         description: 'Drag & drop สื่งนี้บน bookmarks bar ของคุณ:'
@@ -372,7 +370,7 @@ quickstart:
         description: 'ถ้าคุณต้องการการชวยเหลอบางอย่าง, พวกเราจะอยู่ที่นี้เพื่อคุณ'
         github: 'บน GitHub'
         email: 'โดยอีเมล'
-        gitter: 'บน Gitter'
+        matrix: 'บน Matrix'
 tag:
     page_title: 'แท็ก'
     list:
@@ -534,7 +532,6 @@ flashes:
         notice:
             config_saved: 'กำหนดการบันทึก'
             password_updated: 'อัปเดตรหัสผ่าน'
-            password_not_updated_demo: ""
             user_updated: 'อัปเดตข้อมูล'
             feed_updated: 'อัปเดตข้อมูล RSS'
             tagging_rules_updated: 'อัปเดตการแท็กข้อบังคับ'
